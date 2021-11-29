@@ -1,12 +1,15 @@
 class Solution:
     def smallestSufficientTeam(self, req_skills: List[str], people: List[List[str]]) -> List[int]:
+        # 每个required skill的初始状态为 1111 --> 结束状态为 0000
+        # 把每个人拥有的skills转换成 每个人 可以满足对应required skills的位置
+        # 每试一个人，看下是否required skill的状态是否有变化，如果有，则说明这个人可以有skills。然后看还剩下哪些required skills需要被满足
 
         # convert req_skills to bit mask --> record the position of each skill
         req = {}
         for i, skill in enumerate(req_skills):
             req[skill] = i
 
-            # convert skills of each people to bit mask, save it in a list
+        # convert skills of each people to bit mask, save it in a list
         m, n = len(req_skills), len(people)
         pbitmask = [0] * n
 

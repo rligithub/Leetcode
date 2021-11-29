@@ -21,7 +21,7 @@ class Solution:
         if pos == len(validseat):
             return 0
 
-            # for loop each row, check if row i right is valid, check if row i-1 right is valid, check if row i-1 left is valid
+        # for loop each row, check if row i right is valid, check if row i-1 right is valid, check if row i-1 left is valid
         # res -- > # of people sit in row[0...pos]
         res = 0
         for cur_seats in range(1 << self.n):
