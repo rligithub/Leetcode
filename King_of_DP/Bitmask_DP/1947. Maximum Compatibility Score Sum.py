@@ -1,5 +1,5 @@
 class Solution:
-    def maxCompatibilitySum(self, students: List[List[int]], mentors: List[List[int]]) -> int:
+    def maxCompatibilitySum(self, students, mentors):
         # similar to # 1879 Minimum XOR sum of two array --> 2D now
         memo = {}
         return self.dfs(students, mentors, 0, 0, memo)
