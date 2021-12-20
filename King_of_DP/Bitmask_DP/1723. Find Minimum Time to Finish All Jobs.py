@@ -1,4 +1,4 @@
-class Solution1:  # TLE
+class Solution:  # TLE
     def minimumTimeRequired(self, jobs, k):
         # each worker gets a subset of tasks
         # remaining subproblem = bitmask of remaining tasks, k-1
@@ -19,9 +19,9 @@ class Solution1:  # TLE
             return memo[(picked, k)]
         n = len(jobs)
         # return 0 if No job remaining AND No person remaining
-        if k == 0 and picked == 1 << (n) - 1:
+        if k == 0 and picked + 1 == 1 << (n):
             return 0
-        elif k == 0 or picked == 1 << (n) - 1:
+        elif k == 0 or picked + 1 == 1 << (n):
             return float('inf')
 
         res = float('inf')
@@ -29,8 +29,8 @@ class Solution1:  # TLE
             if pick & picked == 0:  # no intersection(picked again)
                 # now assign remaining workers
                 res = min(res, max(time[pick], self.dfs(jobs, time, picked | pick, k - 1, memo)))
-        memo[(state, k)] = res
-        return memo[(state, k)]
+        memo[(picked, k)] = res
+        return memo[(picked, k)]
 
 
 class Solution:

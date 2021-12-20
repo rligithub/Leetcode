@@ -1,6 +1,6 @@
 class Solution:
     def numOfArrays(self, n: int, m: int, k: int) -> int:
-        # 给n个数字，每个数字不大于m，只能用cost k 来更新最大值
+        # 给一个程序，这个程序用来找一个数组中的最大值，每更新一次最大值cost++，求给一个最大值m和cost k，有几种方式组成这个数组
 
         memo = {}
         return self.dfs(n, m, k, -1, memo)

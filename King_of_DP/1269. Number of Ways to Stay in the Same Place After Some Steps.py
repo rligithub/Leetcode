@@ -1,6 +1,6 @@
 class Solution:
     def numWays(self, steps: int, arrLen: int) -> int:
-        # 给几个steps，可以向左走，向右走，不走，求有几种方式使得回到原点
+        # 给几个steps和array长度，可以向左走，向右走，不走，求有几种方式使得回到原点
 
         memo = {}
         return self.dfs(steps, arrLen, 0, memo)

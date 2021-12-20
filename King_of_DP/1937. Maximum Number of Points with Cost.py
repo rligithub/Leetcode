@@ -48,3 +48,29 @@ class Solution2:  # TLE
         return res
 
 
+class Solution:
+    def maxPoints(self, points) -> int:
+        m, n = len(points), len(points[0])
+        dp = [0] * n
+        # initialization
+        for j in range(n):
+            dp[j] = points[0][j]
+
+        for i in range(1, m):
+
+            # from left to right, find max score that next row can get --> only take into account only elements with index [0, j]
+            maxx = -float("inf")
+            for j in range(0, n):
+                maxx = max(maxx - 1, dp[j])
+                dp[j] = maxx
+
+            # from right to left, find max score that next row can get --> only take into account only elements with index [j, end]
+            maxx = -float("inf")
+            for j in range(n - 1, -1, -1):
+                maxx = max(maxx - 1, dp[j])
+                dp[j] = maxx
+
+            for j in range(n):
+                dp[j] = points[i][j] + dp[j]
+
+        return max(dp)

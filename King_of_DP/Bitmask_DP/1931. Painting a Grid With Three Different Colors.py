@@ -41,3 +41,50 @@ class Solution:
 
         memo[(pos, prevrow)] = res % mod
         return memo[(pos, prevrow)]
+
+class Solution: # happiness method
+    def colorTheGrid(self, m: int, n: int) -> int:
+        memo = {}
+        return self.dfs(m, n, 0, 0, 0, 0, memo)
+
+    def dfs(self, m, n, pos, red, yellow, green, memo):
+        if (pos, red, yellow, green) in memo:
+            return memo[(pos, red, yellow, green)]
+
+        if pos == n*m:
+            return 1
+
+        row, col = pos // m, pos % m
+
+        mod = 10 ** 9 + 7
+        fullmask = (1 << m) - 1
+
+        nxt_red = (red << 1) & fullmask
+        nxt_yellow = (yellow << 1) & fullmask
+        nxt_green = (green << 1) & fullmask
+
+        res = 0
+        if self.valid(m, row, col, red):
+            res += self.dfs(m, n, pos + 1, nxt_red + 1, nxt_yellow, nxt_green, memo)
+        if self.valid(m, row, col, yellow):
+            res += self.dfs(m, n, pos + 1, nxt_red, nxt_yellow + 1, nxt_green, memo)
+        if self.valid(m, row, col, green):
+            res += self.dfs(m, n, pos + 1, nxt_red, nxt_yellow, nxt_green + 1, memo)
+
+        memo[(pos, red, yellow, green)] = res % mod
+        return memo[(pos, red, yellow, green)]
+
+    def valid(self, m, row, col, state):
+        up = 1 << (m - 1)
+
+        if col == 0 and row == 0:
+            return True
+
+        if col > 0 and state & 1:  # has neighbor
+            return False
+
+        if row > 0 and state & up:  # has neighbor
+            return False
+
+        return True
+

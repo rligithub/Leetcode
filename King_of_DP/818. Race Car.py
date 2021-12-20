@@ -1,5 +1,5 @@
 class Solution1:
-    # 赛车 --》 A --> 起始速度为1，每次加速x2; R--> reset 起始速度 -1
+    # 赛车:  A --> 起始速度为1，每次加速x2; R--> 换个方向，起始速度 1，每次加速x2, 求到target的最少指令是多少
     # THREE CASES to reach target
     # CASE1: go forward to reach target --> speed *= 2 ==> think about bit ===> step = 1 << 0...n
     # CASE2: go pass target + turn back to reach target
