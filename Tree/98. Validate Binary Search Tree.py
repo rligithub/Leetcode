@@ -19,3 +19,24 @@ class Solution:
         right = self.dfs(root.right, root.val, maxx)
 
         return minn < root.val < maxx and left and right
+
+
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        if not root:
+            return True
+
+        isBST, minn, maxx = self.dfs(root)
+        return isBST
+
+    def dfs(self, root):
+        if not root:
+            return True, float('inf'), float('-inf')
+
+        lBST, lminn, lmaxx = self.dfs(root.left)
+        rBST, rminn, rmaxx = self.dfs(root.right)
+
+        minn = min(lminn, root.val)
+        maxx = max(rmaxx, root.val)
+        isBST = lmaxx < root.val < rminn and lBST and rBST
+        return isBST, minn, maxx

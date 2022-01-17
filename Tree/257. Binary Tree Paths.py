@@ -22,3 +22,22 @@ class Solution:
         self.dfs(root.right, path + str(root.val) + "->", res)
 
         return res
+
+
+class Solution2:
+    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+        self.res = []
+        path = ''
+
+        self.dfs(root, path)
+        return self.res
+
+    def dfs(self, root, path):
+        if not root:
+            return []
+
+        if not root.left and not root.right:
+            self.res.append(path + str(root.val))
+
+        self.dfs(root.left, path + str(root.val) + "->")
+        self.dfs(root.right, path + str(root.val) + "->")

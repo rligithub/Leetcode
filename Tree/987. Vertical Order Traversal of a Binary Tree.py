@@ -31,7 +31,7 @@ class Solution1:
         return res.values()
 
 
-class Solution:
+class Solution2:
     def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
         self.res = []
         self.dfs(root, 0, 0)
@@ -46,6 +46,37 @@ class Solution:
         if not root:
             return 0
         self.res.append((col, depth, root.val))
-        left = self.dfs(root.left, depth + 1, col - 1)
-        right = self.dfs(root.right, depth + 1, col + 1)
+        self.dfs(root.left, depth + 1, col - 1)
+        self.dfs(root.right, depth + 1, col + 1)
 
+
+class Solution:
+    def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
+
+        if not root:
+            return
+        table = collections.defaultdict(lambda: defaultdict(list))
+        queue = collections.deque()
+        queue.append((root, 0, 0))
+        minidx, maxidx = float('inf'), float('-inf')
+        while queue:
+            size = len(queue)
+
+            for i in range(size):
+                cur, idx, lvl = queue.popleft()
+                table[idx][lvl].append(cur.val)
+                minidx = min(minidx, idx)
+                maxidx = max(maxidx, idx)
+
+                if cur.left:
+                    queue.append((cur.left, idx - 1, lvl + 1))
+                if cur.right:
+                    queue.append((cur.right, idx + 1, lvl + 1))
+
+        res = []
+        for i in range(minidx, maxidx + 1):
+            col = []
+            for j in table[i]:
+                col += sorted(table[i][j])
+            res.append(col)
+        return res

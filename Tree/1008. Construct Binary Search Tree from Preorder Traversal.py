@@ -1,11 +1,12 @@
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def bstFromPreorder(self, preorder: List[int]) -> Optional[TreeNode]:
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution1:
+    def bstFromPreorder(self, preorder):
         # use preorder to build BST
         # NOTE THAT idx of preorder will always ++
 
@@ -24,3 +25,10 @@ class Solution:
         root.left = self.dfs(preorder, minn, val)
         root.right = self.dfs(preorder, val, maxx)
         return root
+
+
+
+
+preorder = [8,5,1,7,10,12]
+a = Solution()
+print(a.bstFromPreorder(preorder))

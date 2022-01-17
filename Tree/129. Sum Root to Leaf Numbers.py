@@ -22,3 +22,23 @@ class Solution:
         right = self.dfs(root.right, res * 10 + root.val)
 
         return left + right
+
+
+class Solution:
+    def sumNumbers(self, root: Optional[TreeNode]) -> int:
+        # similar to #1022
+
+        self.res = 0
+        self.dfs(root, 0)
+        return self.res
+
+    def dfs(self, root, summ):
+        if not root:
+            return 0
+        summ = summ * 10 + root.val
+
+        if not root.left and not root.right:
+            self.res += summ
+
+        self.dfs(root.left, summ)
+        self.dfs(root.right, summ)

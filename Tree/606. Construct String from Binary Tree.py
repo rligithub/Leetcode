@@ -29,3 +29,26 @@ class Solution:
         else:  # 左右子树都不为空, 返回 3(2)(4) 的形式
             return str(root.val) + '(' + self.dfs(root.left) + ')' + '(' + self.dfs(root.right) + ')'
 
+
+class Solution:
+    def tree2str(self, root: Optional[TreeNode]) -> str:
+        return self.dfs(root)
+
+    def dfs(self, root):
+        if not root:
+            return ''
+        val = str(root.val)
+        left = self.dfs(root.left)
+        right = self.dfs(root.right)
+
+        if not root.left and not root.right:
+            return val + ""
+
+        elif not root.left:
+            return val + '(' + ')' + '(' + right + ')'
+
+        elif not root.right:
+            return val + '(' + left + ')'
+
+        else:
+            return val + '(' + left + ')' + '(' + right + ')'
