@@ -15,7 +15,7 @@ class Solution:
         if start > len(s) - 1:
             return True
 
-            # 看 后k个数的位置 有没有一个满足条件
+        # 看 后k个数的位置 有没有一个满足条件
         for end in range(start + 1, len(s) + 1):
             # print()
             if (s[start: end] in dicts) and self.dfs(s, dicts, end, memo):
