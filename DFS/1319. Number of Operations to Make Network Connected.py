@@ -1,5 +1,5 @@
 class Solution:
-    def makeConnected(self, n: int, connections: List[List[int]]) -> int:
+    def makeConnected(self, n: int, connections) -> int:
         # similar to num of islands --> get edges needed --> num of nodes - 1
 
         # n 个 nodes 最少需要 n - 1 edges
