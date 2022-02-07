@@ -4,6 +4,7 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
 class Solution:
     def generateTrees(self, n):
         if n == 0:

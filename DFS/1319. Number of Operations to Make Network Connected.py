@@ -1,3 +1,5 @@
+import collections
+
 class Solution:
     def makeConnected(self, n: int, connections) -> int:
         # similar to num of islands --> get edges needed --> num of nodes - 1
