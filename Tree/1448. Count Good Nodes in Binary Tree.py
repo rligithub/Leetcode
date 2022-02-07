@@ -21,4 +21,4 @@ class Solution:
             self.res += 1
 
         self.dfs(root.left, maxx)
-        self.dfs(root.right, maxx)pre
+        self.dfs(root.right, maxx)

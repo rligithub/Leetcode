@@ -1,5 +1,6 @@
 class Solution:
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+        # similar to #2097 一笔画问题
         graph = collections.defaultdict(list)
 
         for fr, to in tickets:

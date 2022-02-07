@@ -28,5 +28,5 @@ class Solution:
             x = i + dx
             y = j + dy
             if 0 <= x < m and 0 <= y < n and (x, y) not in visited and grid2[x][y] == 1:
-                res &= self.dfs(grid2, m, n, grid1, x, y, visited)
+                res &= self.dfs(grid2, m, n, grid1, x, y, visited) # can't not do early return --> need to add all connected islands into visited, so we won't visit again
         return res
