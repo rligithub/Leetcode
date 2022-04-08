@@ -34,4 +34,4 @@ class Solution:
         for i in range(m):
             for j in range(n):
                 res = max(res, distance[i][j])
-        return res 
+        return res
