@@ -9,13 +9,13 @@ class Solution:
                 if i != j and isConnected[i][j] == 1:
                     uf.union(i, j)
 
-        return uf.count + n
+        return uf.count
 
 
 class UnionFind():
     def __init__(self, n):
         self.parent = {i: i for i in range(n)}
-        self.count = 0
+        self.count = n
 
     def find(self, i):
         if self.parent[i] != i:

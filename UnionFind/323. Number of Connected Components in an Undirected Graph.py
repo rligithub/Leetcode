@@ -7,13 +7,13 @@ class Solution:
         for u, v in edges:
             uf.union(u, v)
 
-        return uf.count + n  # for loop n node, each time union together --
+        return uf.count  # for loop n node, each time union together --
 
 
 class UnionFind():
     def __init__(self, n):
         self.parent = [i for i in range(n + 1)]
-        self.count = 0
+        self.count = n
 
     def find(self, i):
         if self.parent[i] != i:
