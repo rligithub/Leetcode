@@ -42,6 +42,8 @@ class Solution:
             else:
                 right = mid
 
+        if self.isvalid(nums, right, k):
+            return right
         return left
 
     def isvalid(self, nums, average, k):

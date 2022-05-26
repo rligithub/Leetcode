@@ -14,4 +14,21 @@ class Solution:
             else:
                 right = mid - 1
 
-        return res 
+        return res
+
+
+class Solution:
+    def fixedPoint(self, arr: List[int]) -> int:
+        # find first position
+        left, right = 0, len(arr) - 1
+
+        while left <= right:
+            mid = left + (right - left) // 2
+            if mid > arr[mid]:
+                left = mid + 1
+            else:
+                right = mid - 1
+
+        if left < len(arr) and left == arr[left]:
+            return left
+        return -1

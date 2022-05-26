@@ -1,6 +1,6 @@
 class Solution:
     def twoSumLessThanK(self, nums: List[int], k: int) -> int:
-        # find first position
+        # find last position
         n = len(nums)
         nums.sort()
         res = -1

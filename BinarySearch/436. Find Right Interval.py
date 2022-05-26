@@ -24,11 +24,23 @@ class Solution:
 
         while left <= right:
             mid = left + (right - left) // 2
-            if nums[mid][0] == target:
-                return mid
-            elif nums[mid][0] > target:
+            if nums[mid][0] >= target:
                 res = mid
                 right = mid - 1
             else:
                 left = mid + 1
         return res
+
+    # def findNum(self, nums, target):
+    #
+    #     left, right = 0, len(nums)
+    #
+    #     while left < right:
+    #         mid = left + (right - left) // 2
+    #         if nums[mid][0] >= target:
+    #             right = mid
+    #         else:
+    #             left = mid + 1
+    #     if left < len(nums):
+    #         return left
+    #     return -1
