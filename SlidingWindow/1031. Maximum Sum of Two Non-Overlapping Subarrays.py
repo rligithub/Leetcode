@@ -26,4 +26,4 @@ class Solution:
             res = max(not_pick, pick_x, pick_y)
 
         memo[(x, y, i)] = res
-        return res 
+        return res

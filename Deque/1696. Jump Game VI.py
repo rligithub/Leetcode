@@ -1,4 +1,4 @@
-class Solution:  # dp + deque
+class Solution:  # dp + Deque
     def maxResult(self, nums: List[int], k: int) -> int:
         # dp[i] = max(dp[j]) + nums[i] --> j is between i - 1 and i - k
 
