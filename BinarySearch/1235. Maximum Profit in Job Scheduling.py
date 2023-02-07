@@ -34,3 +34,44 @@ class Solution:
             else:
                 right = mid - 1
         return res
+
+
+class Solution: # binary search + topdown dp
+    def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+        graph = []
+        n = len(startTime)
+        for i in range(n):
+            graph.append([startTime[i], endTime[i], profit[i]])
+        graph.sort()    # sort by start time
+
+        memo = {}
+        return self.dfs(graph, 0, memo)
+
+    def dfs(self, graph, i, memo):
+        if i in memo:
+            return memo[i]
+
+        if i == len(graph):
+            return 0
+
+        not_pick = self.dfs(graph,i + 1, memo)
+        start, end, p = graph[i]
+        pos = self.search_right(graph, end) # find next start time position
+        if pos == -1:
+            pick = p                # this is the last job
+        else:
+            pick = p + self.dfs(graph,pos,memo)     # there is next job
+
+        memo[i] = max(pick, not_pick)
+        return memo[i]
+
+    def search_right(self, graph, target):
+        left, right = 0, len(graph) - 1
+        while left <= right:
+            mid = left + (right - left) // 2
+            if graph[mid][0] >= target:
+                right = mid - 1
+            elif graph[mid][0] < target:
+                left = mid + 1
+
+        return left

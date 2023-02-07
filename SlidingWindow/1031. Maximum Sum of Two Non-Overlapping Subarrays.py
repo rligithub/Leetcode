@@ -1,4 +1,4 @@
-class Solution:
+class Solution:O(n*2*2)
     def maxSumTwoNoOverlap(self, nums: List[int], firstLen: int, secondLen: int) -> int:
         memo = {}
         return self.dfs(nums, firstLen, secondLen, 0, memo)
@@ -27,3 +27,35 @@ class Solution:
 
         memo[(x, y, i)] = res
         return res
+
+    class Solution:  # sliding window O(n)
+        def maxSumTwoNoOverlap(self, nums: List[int], f: int, s: int) -> int:
+
+            # subarry --> presum
+            # get max sum of two subarray
+
+            n = len(nums)
+
+            if n < f + s:
+                return 0
+
+            preSum = [nums[0]]
+            for i in range(1, len(nums)):
+                preSum.append(preSum[-1] + nums[i])
+
+            summ = preSum[f + s - 1]
+            firstSum = preSum[f - 1]
+            secondSum = preSum[s - 1]
+
+            for i in range(f + s, n):
+                curSum_s = preSum[i] - preSum[i - s]
+                curSum_f = preSum[i] - preSum[i - f]
+
+                firstSum = max(firstSum, preSum[i - s] - preSum[i - s - f])  # max_firstLen_summ
+                secondSum = max(secondSum, preSum[i - f] - preSum[i - s - f])
+
+                # max_firstLen_Summ + current_secondLen_summ vs max_secondLen_Summ + current_firstLen_summ
+                summ = max(summ, firstSum + curSum_s, secondSum + curSum_f)
+
+            return summ
+

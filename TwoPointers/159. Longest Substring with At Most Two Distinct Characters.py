@@ -19,3 +19,17 @@ class Solution:
             count = max(count, right - left)
 
         return count
+
+
+def generate_substr(s, k):
+    if not s or k == 0:
+        return None
+
+    result = {}
+
+    for i in range(len(s)):
+        if len(s) - i < k:
+            break
+        if len(set(s[i:i + k])) == k:
+            result[s[i:i + k]] = 1
+    return result.keys()

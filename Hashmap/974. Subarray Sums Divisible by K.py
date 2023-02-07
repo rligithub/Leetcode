@@ -11,3 +11,4 @@ class Solution:
             table[summ] += 1
 
         return res
+0

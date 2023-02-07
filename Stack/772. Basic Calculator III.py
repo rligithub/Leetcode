@@ -32,3 +32,38 @@ class Solution:
                 break
 
         return sum(stack)
+
+class Solution: # local index
+    def calculate(self, s: str) -> int:
+
+        return self.dfs(s, 0)
+
+    def dfs(self, s, i):
+        stack = []
+        num = 0
+        sign = '+'
+
+        while i < len(s):
+            ch = s[i]
+            if ch.isdigit():
+                num = 10 * num + int(ch)
+
+            if ch == '(':
+                num, i = self.dfs(s, i+1)
+            if ch in "+-*/)" or i == len(s) -1:   # +-*/)
+                if sign == '+':
+                    stack.append(num)
+                if sign == '-':
+                    stack.append(-num)
+                if sign == '*':
+                    stack.append(stack.pop() * num)
+                if sign == '/':
+                    stack.append(int(stack.pop() / num))
+                num = 0
+                if ch == ')':
+                    return sum(stack), i
+                sign = ch
+            i += 1
+        return sum(stack)
+
+

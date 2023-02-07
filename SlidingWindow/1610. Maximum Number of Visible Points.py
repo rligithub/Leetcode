@@ -22,3 +22,30 @@ class Solution:
                 right += 1
             maxx = max(maxx, right - i)
         return same + maxx
+
+class Solution:
+    def visiblePoints(self, points: List[List[int]], angle: int, location: List[int]) -> int:
+        # max points you can observed from location
+
+        # calculate angles of each point from location
+        same = 0
+        arr = []
+        for x, y in points:
+            if x == location[0] and y == location[1]:   # point is in the same location
+                same += 1
+                continue
+            a = math.atan2(y - location[1], x - location[0])
+            arr.append(a)
+            arr.append(a + 2*math.pi)
+        arr.sort()
+
+        count = 0
+        i = 0
+        # for loop each angles, check to see if angles[j] - angles[i] <= angle, calculate max count of j - i + 1
+        for j in range(len(arr)):
+            while arr[j] - arr[i] > angle * math.pi / 180:
+                i += 1
+            count = max(count, j - i + 1)
+
+        return count + same
+

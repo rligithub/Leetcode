@@ -91,3 +91,33 @@ class Solution:
                 num = 0
                 sign = char
         return sum(stack)
+
+
+class Solution:
+    def calculate(self, s: str) -> int:
+        return self.dfs(s, 0)
+
+    def dfs(self, s, i):
+        stack = []
+        num = 0
+        sign = "+"
+
+        while i < len(s):
+            ch = s[i]
+            if ch.isdigit():
+                num = num * 10 + int(ch)
+
+            if ch in "+-*/)" or i == len(s) - 1:
+                if sign == "+":
+                    stack.append(num)
+                if sign == "-":
+                    stack.append(-num)
+                if sign == "*":
+                    stack.append(stack.pop() * num)
+                if sign == "/":
+                    stack.append(int(stack.pop() / num))
+
+                num = 0
+                sign = ch
+            i += 1
+        return sum(stack)

@@ -7,8 +7,8 @@ class Solution:
         rectangle1 = abs(ax1 - ax2) * abs(ay1 - ay2)
         rectangle2 = abs(bx1 - bx2) * abs(by1 - by2)
 
-        w = max(0, min(ax2, bx2) - max(ax1, bx1))
-        h = max(0, min(ay2, by2) - max(ay1, by1))
+        w = max(0, min(ax2, bx2) - max(ax1, bx1))   # if w < 0, no intersection
+        h = max(0, min(ay2, by2) - max(ay1, by1))   # if h <0, no intersection
 
         overlap = w * h
 

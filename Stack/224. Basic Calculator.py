@@ -100,3 +100,34 @@ class SolutionTony2:
                 break
 
         return sum(stack)
+
+
+class Solution: # local index
+    def calculate(self, s: str) -> int:
+        # + - ( ) " "
+
+        return self.dfs(s, 0)
+
+    def dfs(self, s, i):
+        num = 0
+        stack = []
+        sign = "+"
+
+        while i < len(s):
+            ch = s[i]
+            if ch.isdigit():
+                num = num * 10 + int(ch)
+            if ch == "(":
+                num, i = self.dfs(s, i + 1)
+            if ch in "+-)" or i == len(s)-1:
+                if sign == "+":
+                    stack.append(num)
+                if sign == "-":
+                    stack.append(-num)
+                num = 0
+                if ch == ")":
+                    return sum(stack), i
+
+                sign = ch
+            i += 1
+        return sum(stack)
